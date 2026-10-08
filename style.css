@@ -234,8 +234,8 @@ body {
     overflow-y: auto;
 }
 
-/* Results Screen */
-#results-screen {
+/* Results Screen & Calibration Screen */
+#results-screen, #calibration-screen {
     justify-content: center;
     align-items: center;
     background: rgba(10, 11, 15, 0.95);
