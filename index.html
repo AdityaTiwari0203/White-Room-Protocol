@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Room Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="engine.js"></script>
+</head>
+<body>
+    <div id="boot-screen" class="screen active">
+        <div class="boot-content">
+            <h1>WHITE ROOM PROTOCOL</h1>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="boot-progress"></div>
+            </div>
+            <p id="boot-text">INITIALIZING...</p>
+        </div>
+    </div>
+
+    <div id="calibration-screen" class="screen">
+        <div class="results-card" style="max-width: 600px;">
+            <h2 style="color: var(--error);">MANDATORY CALIBRATION</h2>
+            <p>Your cognitive and psychological baselines are unrecorded. You must complete the initial diagnostic before accessing the White Room Protocol.</p>
+            <div id="calib-step-1">
+                <h3 style="margin-top:20px;">PHASE 1: LOGIC & SPEED</h3>
+                <p>Calculate rapidly: What is 15% of 240 + 14?</p>
+                <input type="text" id="calib-q1" class="chat-input" style="width: 100%; margin-bottom: 20px;">
+                <button id="btn-calib-1" class="btn btn-primary" style="width:100%;">SUBMIT</button>
+            </div>
+            <div id="calib-step-2" style="display:none;">
+                <h3 style="margin-top:20px;">PHASE 2: PSYCHOLOGICAL DETACHMENT</h3>
+                <p>A train is heading towards 5 workers. You can pull a lever to divert it to a track with 1 worker. The 1 worker is a brilliant doctor on the verge of curing a major disease. Do you pull the lever? (YES/NO)</p>
+                <input type="text" id="calib-q2" class="chat-input" style="width: 100%; margin-bottom: 20px;">
+                <button id="btn-calib-2" class="btn btn-primary" style="width:100%;">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard-screen" class="screen">
+        <header class="top-bar">
+            <div class="user-grade">
+                <span id="grade-title">NOVICE</span>
+                <span class="level-badge" id="overall-level">Lv. 1</span>
+            </div>
+            <div class="stats-summary" style="display:flex; align-items:center; gap: 15px;">
+                <input type="password" id="gemini-api-key" placeholder="Gemini API Key..." class="chat-input" style="width: 200px; padding: 5px;" onchange="localStorage.setItem('ayanokoji_api_key', this.value)">
+                <script>
+                    document.getElementById('gemini-api-key').value = localStorage.getItem('ayanokoji_api_key') || '';
+                </script>
+                <span>SESSIONS: <span id="total-sessions">0</span></span>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="radar-container">
+                <canvas id="stat-radar"></canvas>
+            </div>
+            
+            <div class="modules-grid" id="modules-container">
+                <!-- Modules injected here via JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="module-screen" class="screen">
+        <header class="module-header">
+            <button id="btn-abort" class="btn btn-outline">ABORT</button>
+            <h2 id="active-module-title">MODULE_NAME</h2>
+            <div class="module-stats">
+                <span id="module-timer">00:00</span>
+                <span id="module-score">SCORE: 0</span>
+            </div>
+        </header>
+        <div id="module-content-area" class="module-content">
+            <!-- Specific module DOM injected here -->
+        </div>
+    </div>
+
+    <div id="results-screen" class="screen">
+        <div class="results-card">
+            <h2>MODULE COMPLETE</h2>
+            <div class="results-grid">
+                <div class="result-item">
+                    <label>SCORE</label>
+                    <span id="res-score">0</span>
+                </div>
+                <div class="result-item">
+                    <label>ACCURACY</label>
+                    <span id="res-accuracy">0%</span>
+                </div>
+                <div class="result-item">
+                    <label>TIME</label>
+                    <span id="res-time">0s</span>
+                </div>
+            </div>
+            <div id="stat-deltas" class="stat-deltas">
+                <!-- Stat changes injected here -->
+            </div>
+            <div class="action-buttons">
+                <button id="btn-retry" class="btn btn-primary">RETRY</button>
+                <button id="btn-dashboard" class="btn btn-outline">DASHBOARD</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <!-- Modules are loaded dynamically by app.js or included here. We will load dynamically. -->
+</body>
+</html>
