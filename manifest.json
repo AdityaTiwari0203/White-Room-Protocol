@@ -1,0 +1,15 @@
+{
+  "name": "White Room Protocol",
+  "short_name": "White Room",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f111a",
+  "theme_color": "#00e5ff",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512 192x192 any"
+    }
+  ]
+}
